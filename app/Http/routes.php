@@ -26,19 +26,5 @@ Route::get('/', function () {
 |
 */
 
-//App::before(function($request)
-//{
-//    // Sent by the browser since request come in as cross-site AJAX
-//    // The cross-site headers are sent via .htaccess
-//    if ($request->getMethod() == "OPTIONS")
-//        return new SuccessResponse();
-//});
-
-header('Access-Control-Allow-Origin: *');
-//header('Access-Control-Allow-Credentials: false');
-
-Route::group(['middleware' => 'cors'], function () {
-});
-
 Route::resource('pin', 'PinController', ['only' => ['index', 'store', 'update']]);
 Route::resource('resposta', 'RespostaController', ['only' => ['index', 'store', 'update']]);
