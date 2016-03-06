@@ -105,34 +105,38 @@ angular.module('app',['uiGmapgoogle-maps'])
 
 		$scope.stick = {};
 		$scope.select = function(icon){
-			$scope.stick.icon = 'icon/'+icon+'.png';
-			$scope.stick.html = 'template/'+icon+'.html';
-			switch (icon){
-				case 'lombada':
-					$scope.stick.title = 'Lombada';
-					$scope.stick.tipo = 1;
-					$scope.stick.voto = 0;
-					break;
-				case 'nao_lombada':
-					$scope.stick.title = 'Remover Lombada';
-					$scope.stick.tipo = 2;
-					$scope.stick.voto = 0;
-					break;
-				case 'semaforo':
-					$scope.stick.title = 'Semaforo';
-					$scope.stick.tipo = 3;
-					$scope.stick.voto = 0;
-					break;
-				case 'nao_semaforo':
-					$scope.stick.title = 'Remover Semaforo';
-					$scope.stick.tipo = 4;
-					$scope.stick.voto = 0;
-					break;
-				case 'nao_estacionamento':
-					$scope.stick.title = 'Remover Estacionamento';
-					$scope.stick.tipo = 6;
-					$scope.stick.voto = 0;
-					break;
+			if($scope.stick.icon != 'icon/'+icon+'.png') {
+				$scope.stick.icon = 'icon/' + icon + '.png';
+				$scope.stick.html = 'template/' + icon + '.html';
+				switch (icon) {
+					case 'lombada':
+						$scope.stick.title = 'Lombada';
+						$scope.stick.tipo = 1;
+						$scope.stick.voto = 0;
+						break;
+					case 'nao_lombada':
+						$scope.stick.title = 'Remover Lombada';
+						$scope.stick.tipo = 2;
+						$scope.stick.voto = 0;
+						break;
+					case 'semaforo':
+						$scope.stick.title = 'Semaforo';
+						$scope.stick.tipo = 3;
+						$scope.stick.voto = 0;
+						break;
+					case 'nao_semaforo':
+						$scope.stick.title = 'Remover Semaforo';
+						$scope.stick.tipo = 4;
+						$scope.stick.voto = 0;
+						break;
+					case 'nao_estacionamento':
+						$scope.stick.title = 'Remover Estacionamento';
+						$scope.stick.tipo = 6;
+						$scope.stick.voto = 0;
+						break;
+				}
+			}else{
+				$scope.stick = {};
 			}
 		}
 

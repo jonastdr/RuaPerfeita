@@ -1,5 +1,6 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: Candara,Calibri,Segoe,Segoe UI,Optima,Arial,sans-serif !important;
+    background-color: rgb(140, 141, 252) !important;
 }
 
 .angular-google-map-container {
@@ -10,6 +11,9 @@ body {
 /* fix for Twitter Bootstrap handling of responsive images */
 .angular-google-map img {
     max-width: none;
+}
+li{
+    list-style: none;
 }
 
 .angular-google-map {
@@ -81,4 +85,29 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 }
 .active{
     border: 1px solid black;
+    border-radius: 13px;
+    background-color: yellow;
+}
+
+.page-header > h1 {
+    color: rgb(140, 141, 252);
+    margin: 0;
+    padding: 0;
+}
+
+.page-header{
+    margin: 20px 0 20px 20px !important;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.container.main{
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
+
+.container{
+    background-color: rgb(240, 237, 229);
 }
