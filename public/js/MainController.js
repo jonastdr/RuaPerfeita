@@ -49,39 +49,43 @@ angular.module('app',['uiGmapgoogle-maps'])
 
 		$scope.pins = [];
 
-		$http.get('pin').then(function(result){
-			var pins = result.data
-			angular.forEach(pins,function(p){
-				var pin = {};
-				pin.lat = p.lat;
-				pin.lng = p.long;
-				pin.voto = parseInt(p.voto);
-				switch (p.tipo){
-					case 1:
-						pin.title = 'Lombada';
-						pin.icon = 'icon/lombada.png';
-						break;
-					case 2:
-						pin.title = 'Remover Lombada';
-						pin.icon = 'icon/nao_lombada.png';
-						break;
-					case 3:
-						pin.title = 'Semaforo';
-						pin.icon = 'icon/semaforo.png';
-						break;
-					case 4:
-						pin.title = 'Remover Semaforo';
-						pin.icon = 'icon/nao_semaforo.png';
-						break;
-					case 6:
-						pin.title = 'Remover Estacionamento';
-						pin.icon = 'icon/nao_estacionamento.png';
-						break;
-				}
-				console.log(pin);
-				$scope.pins.push(pin);
+		$scope.getPins = function() {
+			$http.get('pin').then(function (result) {
+				var pins = result.data
+				angular.forEach(pins, function (p) {
+					var pin = {};
+					pin.id_pin = p.id_pin;
+					pin.lat = p.lat;
+					pin.lng = p.long;
+					pin.voto = p.voto;
+					switch (p.tipo) {
+						case 1:
+							pin.title = 'Lombada';
+							pin.icon = 'icon/lombada.png';
+							break;
+						case 2:
+							pin.title = 'Remover Lombada';
+							pin.icon = 'icon/nao_lombada.png';
+							break;
+						case 3:
+							pin.title = 'Semaforo';
+							pin.icon = 'icon/semaforo.png';
+							break;
+						case 4:
+							pin.title = 'Remover Semaforo';
+							pin.icon = 'icon/nao_semaforo.png';
+							break;
+						case 6:
+							pin.title = 'Remover Estacionamento';
+							pin.icon = 'icon/nao_estacionamento.png';
+							break;
+					}
+					$scope.pins.push(pin);
+				})
 			})
-		})
+		}
+
+		$scope.getPins();
 
 		$scope.add = function(pin){
 			pin.icon = $scope.stick.icon
@@ -95,8 +99,7 @@ angular.module('app',['uiGmapgoogle-maps'])
 				tipo:  $scope.stick.tipo
 			}
 			$http.post('/pin',data).then(function(result){
-				console.log(result);
-				$scope.pins.push(pin);
+				$scope.getPins();
 			})
 		}
 
@@ -133,8 +136,24 @@ angular.module('app',['uiGmapgoogle-maps'])
 			}
 		}
 
-		$scope.votar = function(voto){
-			console.log(voto);
+		$scope.votar = function(pin,status){
+			if(!pin.hideButton) {
+				if (status) {
+					pin.voto = pin.voto + 1;
+					pin.hideButton = true;
+					$http.patch('pin/' + pin.id_pin, {voto: 1}).then(function (result) {
+						$scope.getPins();
+					})
+				} else {
+					pin.voto = pin.voto - 1;
+					pin.hideButton = true;
+					$http.patch('pin/' + pin.id_pin, {voto: -1}).then(function (result) {
+						$scope.getPins();
+					})
+
+				}
+				$scope.userVoto = false;
+			}
 		}
 
 	})

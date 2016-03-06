@@ -32,12 +32,19 @@ class PinController extends Controller
         $pin = new Pin();
         $post = $request->all();
         $post['expire_at'] = Carbon::now()->addDay(30)->toDateTimeString();
-        $pin->create($post);
+        $newPin = $pin->create($post);
 
-        return 'Sucesso';
+        return $newPin;
     }
 
-    public function update($id, Request $request) {
-
+    public function update($id, Request $request)
+    {
+        $pin = new Pin();
+        if($request->voto > 0 ){
+            $pin->find($id)->increment('voto');
+        }elseif($request->voto < 0){
+            $pin->find($id)->decrement('voto');
+        }
+        return 'Sucesso';
     }
 }

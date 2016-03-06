@@ -42,9 +42,9 @@
                             <div>
                                 votos: <span ng-bind="$parent.p.voto"></span>
                             </div>
-                            <div>
-                                <button ng-click="$parent.votar('like')">like</button>
-                                <button ng-click="$parent.votar('dislike')">dislike</button>
+                            <div ng-show="!$parent.p.hideButton">
+                                <button ng-click="$parent.votar($parent.p,true)">like</button>
+                                <button ng-click="$parent.votar($parent.p,false)">dislike</button>
                             </div>
                         </div>
                     </ui-gmap-window>

@@ -17,7 +17,7 @@ class CreatePinTable extends Migration
             $table->string('lat');
             $table->string('long');
             $table->integer('tipo');
-            $table->string('voto')->default(0);
+            $table->integer('voto')->default(0);
             $table->timestamp('expire_at');
             $table->timestamps();
         });
