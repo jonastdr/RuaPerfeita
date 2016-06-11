@@ -27,4 +27,3 @@ Route::get('/', function () {
 */
 
 Route::resource('pin', 'PinController', ['only' => ['index', 'store', 'update']]);
-Route::resource('resposta', 'RespostaController', ['only' => ['index', 'store', 'update']]);
