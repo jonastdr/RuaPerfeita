@@ -24,6 +24,8 @@ class ForeignKeyPinResposta extends Migration
      */
     public function down()
     {
-        Schema::dropForeign('resposta_id_pin_foreign');
+        Schema::table('resposta', function($table) {
+            $table->dropForeign('resposta_id_pin_foreign');
+        });
     }
 }
