@@ -1,20 +1,14 @@
 class HomeController {
 
-    public map;
-    
-    constructor(scope: IScope, Maps: MapsFactory) {
-        this.map = Maps.map;
-
-        MapsFactory.clickAction = function (obj: IMarkerProp) {
-            Maps.addMarker({
-                position: obj.position,
-                icon: Maps.icones.nao_semafaro,
-                template: MarkerTemplate,
-                title: 'Lombada'
+    constructor(GoogleMaps: GoogleMapsFactory) {
+        GoogleMaps.clickAction = (mapModel, eventName, originalEventArgs) => {
+            GoogleMaps.addMarker({
+                position: originalEventArgs[0].latLng,
+                icon: GoogleMaps.icones.lombada,
+                title: 'Lombada',
+                template: MarkerTemplate
             });
-        }
-
-        Maps.init(scope);
+        };
     }
 
     static config(route) {
@@ -27,8 +21,7 @@ class HomeController {
 }
 
 HomeController.$inject = [
-    '$scope',
-    'Maps'
+    'GoogleMaps'
 ];
 
 HomeController.config.$inject = [

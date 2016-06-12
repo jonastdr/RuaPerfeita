@@ -1,3 +1,5 @@
+declare var google;
+
 class Boot {
     
     public static app;
@@ -5,6 +7,7 @@ class Boot {
     constructor() {
         Boot.app = angular.module('app', [
             'ngRoute',
+            'uiGmapgoogle-maps'
         ]);
     }
     
